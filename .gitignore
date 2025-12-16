@@ -1,5 +1,14 @@
-tempCodeRunnerFile.cpp
-input.txt
-output.txt
-/output
-output
+# Ignore compiled executables and text files
+*.exe
+*.txt
+
+# Keep C source files
+!*.cpp
+
+# Common IDE/project files
+.vscode/
+/.idea/
+
+# OS files
+Thumbs.db
+Desktop.ini

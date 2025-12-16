@@ -13,14 +13,17 @@ int main() {
 
   //   replace(v.begin(), v.end()-1, 2, 100);
 
-  auto it = find(v.begin(), v.end(), 5);
+  //   auto it = find(v.begin(), v.end(), 5);
 
-  cout << *it << endl;
+  //   cout << *it << endl;
   //   if (it == v.end()) {
   //     cout << "Not found";
   //   } else {
   //     cout << "Found";
   //   }
+  for (auto it = v.begin(); it < v.end(); it++) {
+    cout << *it << endl;
+  }
 
   return 0;
 }

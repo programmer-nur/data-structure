@@ -12,29 +12,40 @@ public:
   }
 };
 
-void print_middle(Node *&head) {
+void print_middle(Node *head) {
+  if (head == NULL)
+    return;
 
-  Node *temp = head;
-  while (temp != NULL) {
-    temp = temp->next;
+  Node *slow = head;
+  Node *fast = head;
+  Node *prev = NULL;
+
+  while (fast != NULL && fast->next != NULL) {
+    fast = fast->next->next;
+    prev = slow;
+    slow = slow->next;
   }
-};
+
+  // Even number of nodes → two middle values
+  if (fast == NULL) {
+    cout << prev->val << " " << slow->val << endl;
+  }
+  // Odd number of nodes → one middle value
+  else {
+    cout << slow->val << endl;
+  }
+}
+
 int main() {
 
   Node *head = new Node(5);
-  Node *two = new Node(4);
-  Node *three = new Node(3);
-  Node *four = new Node(5);
-  Node *five = new Node(8);
-  Node *six = new Node(12);
-  Node *tail = new Node(9);
-
-  head->next = two;
-  two->next = three;
-  three->next = four;
-  four->next = five;
-  five->next = six;
-  six->next = tail;
+  head->next = new Node(4);
+  head->next->next = new Node(3);
+  head->next->next->next = new Node(5);
+  head->next->next->next->next = new Node(8);
+  head->next->next->next->next->next = new Node(12);
+  head->next->next->next->next->next->next = new Node(12);
+  head->next->next->next->next->next->next->next = new Node(9);
 
   print_middle(head);
 

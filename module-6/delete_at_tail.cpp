@@ -21,36 +21,48 @@ void insert_at_tail(Node *&head, Node *&tail, int val) {
     return;
   }
 
-  //   right now temp is at last node
   tail->next = newNode;
   tail = tail->next;
-};
+}
 
-void print_reverse(Node *&temp) {
-  if (temp == NULL) {
-    return;
+void print_list(Node *head) {
+  Node *temp = head;
+
+  while (temp != NULL) {
+    cout << temp->val << endl;
+    temp = temp->next;
+  }
+}
+
+void delete_at_tail(Node *&head, Node *&tail, int idx) {
+
+  Node *temp = head;
+  for (int i = 1; i < idx; i++) {
+    temp = temp->next;
   }
 
-  print_reverse(temp->next);
-  cout << temp->val << endl;
-};
+  Node *deleteNode = temp->next;
+  temp->next = temp->next->next;
+
+  delete deleteNode;
+  tail = temp;
+}
 
 int main() {
   Node *head = NULL;
   Node *tail = NULL;
 
   int val;
-
   while (true) {
     cin >> val;
-
     if (val == -1) {
       break;
     }
     insert_at_tail(head, tail, val);
   }
-
-  print_reverse(head);
-
+  int choose;
+  cin >> choose;
+  delete_at_tail(head, tail, choose);
+  print_list(head);
   return 0;
 }

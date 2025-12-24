@@ -14,7 +14,6 @@ public:
 
 void insert_at_tail(Node *&head, Node *&tail, int val) {
   Node *newNode = new Node(val);
-
   if (head == NULL) {
     head = newNode;
     tail = newNode;
@@ -26,31 +25,37 @@ void insert_at_tail(Node *&head, Node *&tail, int val) {
   tail = tail->next;
 };
 
-void print_reverse(Node *&temp) {
-  if (temp == NULL) {
-    return;
+void print_link_list(Node *head) {
+  Node *temp = head;
+  while (temp != NULL) {
+    cout << temp->val << endl;
+    temp = temp->next;
   }
+}
 
-  print_reverse(temp->next);
-  cout << temp->val << endl;
-};
+void delete_at_head(Node *&head) {
+  Node *deleteNode = head;
+
+  head = head->next;
+
+  delete deleteNode;
+}
 
 int main() {
   Node *head = NULL;
   Node *tail = NULL;
 
   int val;
-
   while (true) {
     cin >> val;
-
     if (val == -1) {
       break;
     }
     insert_at_tail(head, tail, val);
   }
 
-  print_reverse(head);
+  delete_at_head(head);
+  print_link_list(head);
 
   return 0;
 }

@@ -22,10 +22,10 @@ void insertAtTail(Node *&head, Node *&tail, int val) {
   tail->next = newNode;
   tail = newNode;
 }
+                                                                         
+void insertAtAnyPos(Node *&head, Node *&tail, int idx, int val, int size) { 
 
-void insertAtAnyPos(Node *&head, Node *&tail, int idx, int val, int size) {
-
-  if (idx < 0 || idx > size)
+  if (idx < 0 || idx > size)     
     return;
 
   Node *newNode = new Node(val);

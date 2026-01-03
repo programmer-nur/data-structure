@@ -1,0 +1,1 @@
+{"name":"Local: a","url":"/home/nur-mohamamd/projects/phitron/Data-Structure/XPSC/a.cpp","tests":[{"id":1767350970861,"input":"3\n1 2 3\n3 1 2\n3 2 1","output":"1\n3\n2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/nur-mohamamd/projects/phitron/Data-Structure/XPSC/a.cpp","group":"local","local":true}

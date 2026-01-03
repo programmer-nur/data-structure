@@ -1,0 +1,1 @@
+{"name":"Local: max_freq","url":"/home/nur-mohamamd/projects/phitron/Data-Structure/XPSC/max_freq.cpp","tests":[{"id":1767374023140,"input":"6\n4 4 2 2 4 3","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/nur-mohamamd/projects/phitron/Data-Structure/XPSC/max_freq.cpp","group":"local","local":true}

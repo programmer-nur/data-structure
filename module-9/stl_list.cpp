@@ -2,13 +2,14 @@
 using namespace std;
 
 int main() {
-  list<int> l(10, 5);
-  cout << *l.begin();
+  vector<int> v = {10, 20, 30};
+  list<int> l(v.begin(), v.end());
 
   //   for (auto it = l.begin(); it != l.end(); it++) {
   //     cout << *it << endl;
   //   }
 
+  l.resize(6,50);
   for (int val : l) {
     cout << val << endl;
   }

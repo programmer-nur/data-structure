@@ -1,14 +1,6 @@
-# Ignore compiled executables and text files
-*.exe
-*.txt
-
-# Keep C source files
-!*.cpp
-
-# Common IDE/project files
-.vscode/
-/.idea/
-
-# OS files
-Thumbs.db
-Desktop.ini
+**/*.exe
+**/.cph
+**/.cph/*.prob
+**/.vscode
+**/output
+**/*.txt

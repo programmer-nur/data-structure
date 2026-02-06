@@ -27,11 +27,9 @@ Node *inputTree() {
     q.push(root);
 
   while (!q.empty()) {
-    // 1 ber kore ani
     Node *p = q.front();
     q.pop();
 
-    // 2 oi node niye kaj kori
     int l, r;
     cin >> l >> r;
 
@@ -48,7 +46,6 @@ Node *inputTree() {
     p->left = myLeft;
     p->right = myRight;
 
-    // 3 child push kori
     if (p->left)
       q.push(p->left);
     if (p->right)
@@ -58,41 +55,30 @@ Node *inputTree() {
   return root;
 }
 
-void level_order(Node *root) {
-  if (root == NULL) {
-    cout << "No Tree" << endl;
-    return;
-  }
+int countWithOutLeaf(Node *root) {
+  if (root == NULL)
+    return 0;
+
+  int sum = 0;
   queue<Node *> q;
   q.push(root);
   while (!q.empty()) {
-    // step 1:ber kore ana
     Node *f = q.front();
     q.pop();
-    // step 2: oi node ke niye kaj kora
-    cout << f->val << " ";
-    // step 3: children push kora
+    if (f->left != NULL || f->right != NULL)
+      sum += f->val;
     if (f->left)
       q.push(f->left);
     if (f->right)
       q.push(f->right);
   }
+  return sum;
 }
 
 int main() {
-  Node *root = new Node(10);
-  Node *a = new Node(20);
-  Node *b = new Node(30);
-  Node *c = new Node(40);
-  Node *d = new Node(50);
-  Node *e = new Node(60);
+  Node *root = inputTree();
+  int res = countWithOutLeaf(root);
 
-  root->left = a;
-  root->right = b;
-  a->left = c;
-  b->left = d;
-  b->right = e;
-
-  level_order(root);
+  cout << res << endl;
   return 0;
 }

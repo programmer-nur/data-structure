@@ -11,6 +11,7 @@ int main() {
 
   pq.push(10);
   pq.push(5);
+  pq.push(5);
   pq.push(30);
 
   while (!pq.empty()) {

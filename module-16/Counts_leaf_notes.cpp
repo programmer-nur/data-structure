@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 class Node {
 public:
   int val;
@@ -22,20 +21,19 @@ Node *inputTree() {
     root = NULL;
   else
     root = new Node(val);
+
   queue<Node *> q;
-  if (root)
-    q.push(root);
+  q.push(root);
 
   while (!q.empty()) {
-    // 1 ber kore ani
     Node *p = q.front();
     q.pop();
 
-    // 2 oi node niye kaj kori
     int l, r;
     cin >> l >> r;
 
     Node *myLeft, *myRight;
+
     if (l == -1)
       myLeft = NULL;
     else
@@ -48,7 +46,6 @@ Node *inputTree() {
     p->left = myLeft;
     p->right = myRight;
 
-    // 3 child push kori
     if (p->left)
       q.push(p->left);
     if (p->right)
@@ -58,41 +55,20 @@ Node *inputTree() {
   return root;
 }
 
-void level_order(Node *root) {
-  if (root == NULL) {
-    cout << "No Tree" << endl;
-    return;
-  }
-  queue<Node *> q;
-  q.push(root);
-  while (!q.empty()) {
-    // step 1:ber kore ana
-    Node *f = q.front();
-    q.pop();
-    // step 2: oi node ke niye kaj kora
-    cout << f->val << " ";
-    // step 3: children push kora
-    if (f->left)
-      q.push(f->left);
-    if (f->right)
-      q.push(f->right);
-  }
+int countLeafNotes(Node *root) {
+  if (root == NULL)
+    return 0;
+
+  if (root->left == NULL && root->right == NULL)
+    return 1;
+  int l = countLeafNotes(root->left);
+  int r = countLeafNotes(root->right);
+
+  return l + r;
 }
 
 int main() {
-  Node *root = new Node(10);
-  Node *a = new Node(20);
-  Node *b = new Node(30);
-  Node *c = new Node(40);
-  Node *d = new Node(50);
-  Node *e = new Node(60);
-
-  root->left = a;
-  root->right = b;
-  a->left = c;
-  b->left = d;
-  b->right = e;
-
-  level_order(root);
+  Node *root = inputTree();
+  cout << countLeafNotes(root);
   return 0;
 }

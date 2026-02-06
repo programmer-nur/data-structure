@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 class Node {
 public:
   int val;
@@ -22,20 +21,20 @@ Node *inputTree() {
     root = NULL;
   else
     root = new Node(val);
+
   queue<Node *> q;
   if (root)
     q.push(root);
 
   while (!q.empty()) {
-    // 1 ber kore ani
     Node *p = q.front();
     q.pop();
 
-    // 2 oi node niye kaj kori
     int l, r;
     cin >> l >> r;
 
     Node *myLeft, *myRight;
+
     if (l == -1)
       myLeft = NULL;
     else
@@ -48,7 +47,6 @@ Node *inputTree() {
     p->left = myLeft;
     p->right = myRight;
 
-    // 3 child push kori
     if (p->left)
       q.push(p->left);
     if (p->right)
@@ -58,41 +56,44 @@ Node *inputTree() {
   return root;
 }
 
-void level_order(Node *root) {
-  if (root == NULL) {
-    cout << "No Tree" << endl;
-    return;
+void leftBoundary(Node *root, vector<int> &res) {
+  Node *temp = root->left;
+  while (temp != NULL) {
+    res.push_back(temp->val);
+    if (temp->left)
+      temp = temp->left;
+    else
+      temp = temp->right;
   }
-  queue<Node *> q;
-  q.push(root);
-  while (!q.empty()) {
-    // step 1:ber kore ana
-    Node *f = q.front();
-    q.pop();
-    // step 2: oi node ke niye kaj kora
-    cout << f->val << " ";
-    // step 3: children push kora
-    if (f->left)
-      q.push(f->left);
-    if (f->right)
-      q.push(f->right);
+}
+
+void rightBoundary(Node *root, vector<int> &res) {
+  Node *temp = root->right;
+  while (temp != NULL) {
+    res.push_back(temp->val);
+    if (temp->right)
+      temp = temp->right;
+    else
+      temp = temp->left;
   }
 }
 
 int main() {
-  Node *root = new Node(10);
-  Node *a = new Node(20);
-  Node *b = new Node(30);
-  Node *c = new Node(40);
-  Node *d = new Node(50);
-  Node *e = new Node(60);
+  vector<int> left, right;
+  Node *root = inputTree();
+  if (root == NULL)
+    return 0;
 
-  root->left = a;
-  root->right = b;
-  a->left = c;
-  b->left = d;
-  b->right = e;
+  leftBoundary(root, left);
+  rightBoundary(root, right);
 
-  level_order(root);
+  for (int i = left.size() - 1; i >= 0; i--) {
+    cout << left[i] << " ";
+  }
+
+  cout << root->val << " ";
+  for (int i = 0; i < right.size(); i++) {
+    cout << right[i] << " ";
+  }
   return 0;
 }
